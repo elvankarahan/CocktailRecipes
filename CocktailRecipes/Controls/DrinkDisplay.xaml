@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CocktailRecipes.Controls.DrinkDisplay"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d">
+
+    <pancake:PancakeView
+        Margin="10"
+        HeightRequest="180"
+        WidthRequest="140">
+        <!--  adads  -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image x:Name="DrinkImage" Source="{Binding strDrinkThumb}" />
+            <Label
+                x:Name="DrinkName"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                Text="{Binding strDrink}"
+                TextColor="Black"
+                VerticalOptions="End" />
+        </Grid>
+    </pancake:PancakeView>
+
+</ContentView>

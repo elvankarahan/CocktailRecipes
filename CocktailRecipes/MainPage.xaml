@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CocktailRecipes.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CocktailRecipes.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    xmlns:viewmodels="clr-namespace:CocktailRecipes.ViewModels"
+    x:Name="MainPagePage"
+    mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <AbsoluteLayout rainbows:DebugRainbow.IsDebug="False">
+        <StackLayout AbsoluteLayout.LayoutBounds="20,70,340,100" HeightRequest="200">
+            <Label FontSize="28" Text="Find your new" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="Cocktail Recipe" />
+        </StackLayout>
+        <Image AbsoluteLayout.LayoutBounds="20,50,500,100" Source="mainpage_Image" />
+
+        <Button
+            Padding="0"
+            AbsoluteLayout.LayoutBounds="35,170,50,30"
+            BackgroundColor="Red"
+            Text="All"
+            TextColor="White" />
+
+
+        <ScrollView
+            x:Name="ScrollContainer"
+            AbsoluteLayout.LayoutBounds="15, 210,.93,.65"
+            AbsoluteLayout.LayoutFlags="SizeProportional">
+
+            <FlexLayout
+                x:Name="FlextLayoutList"
+                BindableLayout.ItemsSource="{Binding ItemList}"
+                Direction="Row"
+                HorizontalOptions="Center"
+                JustifyContent="Center"
+                Wrap="Wrap">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <controls:DrinkDisplay>
+                            <controls:DrinkDisplay.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </controls:DrinkDisplay.GestureRecognizers>
+                        </controls:DrinkDisplay>
+                    </DataTemplate>
+
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+
+        <controls:DrinkFullDetail
+            x:Name="DrinkDetailCell"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            IsVisible="false" />
+    </AbsoluteLayout>
+
+</ContentPage>

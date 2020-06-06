@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CocktailRecipes.Controls.DrinkFullDetail"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <StackLayout>
+        <ScrollView Margin="10,10">
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!--  Üst Çubuk  -->
+                <Grid BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ImageButton
+                        BackgroundColor="Transparent"
+                        Clicked="ImageButton_Clicked"
+                        HeightRequest="50"
+                        HorizontalOptions="Start"
+                        Source="back_icon" />
+                    <ImageButton
+                        x:Name="buttonSelected"
+                        Grid.Column="1"
+                        Margin="0,0,20,0"
+                        BackgroundColor="Transparent"
+                        Clicked="ImageButton_Clicked_1"
+                        HeightRequest="40"
+                        HorizontalOptions="End"
+                        Source="liked_icon" />
+                </Grid>
+                <!--  Üst  -->
+                <!--  Orta Foto  -->
+                <StackLayout
+                    Grid.Row="1"
+                    Padding="10"
+                    BackgroundColor="White">
+                    <Frame
+                        Padding="0"
+                        CornerRadius="20"
+                        HorizontalOptions="Center"
+                        IsClippedToBounds="True"
+                        VerticalOptions="Center">
+                        <Image
+                            HorizontalOptions="Center"
+                            Source="{Binding strDrinkThumb}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </StackLayout>
+                <!--  Orta  -->
+
+                <!--  Alt  -->
+                <Grid Grid.Row="2" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--  içecek ismi  -->
+                    <Label
+                        Margin="10,10,0,0"
+                        FontSize="20"
+                        Text="{Binding strDrink}"
+                        VerticalOptions="Center" />
+                    <!--  çizgi  -->
+                    <BoxView
+                        Grid.Row="1"
+                        Margin="10,0"
+                        BackgroundColor="Black"
+                        HorizontalOptions="Fill" />
+                    <!--  Kategori  -->
+                    <Grid Grid.Row="2" Margin="10,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="18" Text="Category:" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="18,0,0,0"
+                            FontSize="18"
+                            Text="{Binding strCategory}"
+                            VerticalOptions="Center" />
+                        <Frame
+                            Grid.Column="2"
+                            Margin="10,0"
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            BorderColor="Red">
+                            <Label
+                                Margin="5,0"
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                Text="{Binding strAlcoholic}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                        </Frame>
+                    </Grid>
+                    <!--  çizgi  -->
+                    <BoxView
+                        Grid.Row="3"
+                        Margin="10,0"
+                        BackgroundColor="Black"
+                        HorizontalOptions="Fill" />
+                    <!--  içindekiler  -->
+                    <Grid Grid.Row="4" Margin="10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+
+                        </Grid.RowDefinitions>
+                        <!--  Label Ingredients  -->
+                        <Label FontSize="18" Text="Ingredients:" />
+                        <!--  All Ingredients:  -->
+                        <Frame
+                            x:Name="Frame1"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient1"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient1}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame2"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient2"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient2}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame3"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient3"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient3}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame4"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient4"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient4}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame5"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient5"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient5}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame6"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient6"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient6}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame7"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient7"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient7}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame8"
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient8"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient8}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame9"
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient9"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient9}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Frame
+                            x:Name="Frame10"
+                            Grid.Row="9"
+                            Grid.Column="1"
+                            Padding="0"
+                            CornerRadius="5"
+                            HorizontalOptions="Start">
+                            <Label
+                                x:Name="Ingredient10"
+                                Margin="5,0,5,0"
+                                BackgroundColor="Transparent"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding strIngredient10}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                    </Grid>
+                    <!--  içindekiler  -->
+                    <BoxView
+                        Grid.Row="5"
+                        Margin="10,0"
+                        BackgroundColor="Black"
+                        HorizontalOptions="Fill" />
+                    <!--  ölçü  -->
+                    <Grid
+                        x:Name="IngredientsDetailGrid"
+                        Grid.Row="6"
+                        Margin="10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <!--  ölçü  -->
+                    <BoxView
+                        Grid.Row="7"
+                        Margin="10,0"
+                        BackgroundColor="Black"
+                        HorizontalOptions="Fill" />
+                    <Label
+                        Grid.Row="8"
+                        Margin="10,0"
+                        FontSize="18"
+                        Text="Instructions:" />
+                    <Label
+                        Grid.Row="9"
+                        Margin="10,0"
+                        FontSize="15"
+                        Text="{Binding strInstructions}" />
+                    <BoxView
+                        Grid.Row="10"
+                        Margin="10,0"
+                        BackgroundColor="Black"
+                        HorizontalOptions="Fill" />
+                    <Label
+                        Grid.Row="11"
+                        Margin="10,0"
+                        Text="Tags:" />
+                    <Label
+                        Grid.Row="12"
+                        Margin="10,0,10,30"
+                        Text="{Binding strTags}" />
+
+                </Grid>
+                <!--  Alt  -->
+                <Label
+                    x:Name="strMeasure1"
+                    IsVisible="False"
+                    Text="{Binding strMeasure1}" />
+                <Label
+                    x:Name="strMeasure2"
+                    IsVisible="False"
+                    Text="{Binding strMeasure2}" />
+                <Label
+                    x:Name="strMeasure3"
+                    IsVisible="False"
+                    Text="{Binding strMeasure3}" />
+                <Label
+                    x:Name="strMeasure4"
+                    IsVisible="False"
+                    Text="{Binding strMeasure4}" />
+                <Label
+                    x:Name="strMeasure5"
+                    IsVisible="False"
+                    Text="{Binding strMeasure5}" />
+                <Label
+                    x:Name="strMeasure6"
+                    IsVisible="False"
+                    Text="{Binding strMeasure6}" />
+                <Label
+                    x:Name="strMeasure7"
+                    IsVisible="False"
+                    Text="{Binding strMeasure7}" />
+                <Label
+                    x:Name="strMeasure8"
+                    IsVisible="False"
+                    Text="{Binding strMeasure8}" />
+                <Label
+                    x:Name="strMeasure9"
+                    IsVisible="False"
+                    Text="{Binding strMeasure9}" />
+                <Label
+                    x:Name="strMeasure10"
+                    IsVisible="False"
+                    Text="{Binding strMeasure10}" />
+            </Grid>
+        </ScrollView>
+    </StackLayout>
+</ContentView>
