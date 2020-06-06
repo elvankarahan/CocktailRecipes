@@ -26,18 +26,47 @@
         </StackLayout>
         <Image AbsoluteLayout.LayoutBounds="20,50,500,100" Source="mainpage_Image" />
 
-        <Button
-            Padding="0"
-            AbsoluteLayout.LayoutBounds="35,170,50,30"
-            BackgroundColor="Red"
-            Text="All"
-            TextColor="White" />
 
+        <ScrollView
+            AbsoluteLayout.LayoutBounds="20,170,.90,.05"
+            AbsoluteLayout.LayoutFlags="SizeProportional"
+            HorizontalScrollBarVisibility="Never"
+            Orientation="Horizontal"
+            VerticalScrollBarVisibility="Never"
+            WidthRequest="500">
+            <StackLayout Orientation="Horizontal">
+                <Button
+                    BackgroundColor="Red"
+                    Command="{Binding ChangeList}"
+                    FontSize="10"
+                    Text="Non-Alcoholic" />
+                <Button
+                    Padding="0"
+                    BackgroundColor="Red"
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="Alcoholic" />
+                <Button
+                    Padding="0"
+                    BackgroundColor="Red"
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="Latest" />
+
+                <Button BackgroundColor="red" Text="sad" />
+                <Button BackgroundColor="red" Text="sad" />
+                <Button BackgroundColor="red" Text="sad" />
+                <Button BackgroundColor="red" Text="sad" />
+                <Button BackgroundColor="red" Text="sad" />
+            </StackLayout>
+
+        </ScrollView>
 
         <ScrollView
             x:Name="ScrollContainer"
             AbsoluteLayout.LayoutBounds="15, 210,.93,.65"
-            AbsoluteLayout.LayoutFlags="SizeProportional">
+            AbsoluteLayout.LayoutFlags="SizeProportional"
+            VerticalScrollBarVisibility="Never">
 
             <FlexLayout
                 x:Name="FlextLayoutList"
