@@ -17,6 +17,16 @@
     </ContentPage.BindingContext>
 
     <AbsoluteLayout rainbows:DebugRainbow.IsDebug="False">
+
+        <SearchBar
+            x:Name="searchBar"
+            AbsoluteLayout.LayoutBounds="0, 5,.8,35"
+            AbsoluteLayout.LayoutFlags="WidthProportional"
+            BackgroundColor="Transparent"
+            Placeholder="Search Cocktail"
+            SearchCommand="{Binding searchCommand}"
+            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+
         <StackLayout AbsoluteLayout.LayoutBounds="20,70,340,100" HeightRequest="200">
             <Label FontSize="28" Text="Find your new" />
             <Label
@@ -33,31 +43,62 @@
             HorizontalScrollBarVisibility="Never"
             Orientation="Horizontal"
             VerticalScrollBarVisibility="Never"
-            WidthRequest="500">
+            WidthRequest="600">
             <StackLayout Orientation="Horizontal">
                 <Button
-                    BackgroundColor="Red"
-                    Command="{Binding ChangeList}"
-                    FontSize="10"
-                    Text="Non-Alcoholic" />
-                <Button
                     Padding="0"
                     BackgroundColor="Red"
+                    Command="{Binding fullList}"
+                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/popular.php"
                     FontSize="10"
                     HorizontalOptions="Center"
-                    Text="Alcoholic" />
+                    Text="Popular" />
+                <Button
+                    BackgroundColor="Red"
+                    Command="{Binding notFullList}"
+                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Non_Alcoholic"
+                    FontSize="10"
+                    Text="Non-ALCHOLIC" />
                 <Button
                     Padding="0"
                     BackgroundColor="Red"
+                    Command="{Binding fullList}"
+                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/latest.php"
                     FontSize="10"
                     HorizontalOptions="Center"
                     Text="Latest" />
-
-                <Button BackgroundColor="red" Text="sad" />
-                <Button BackgroundColor="red" Text="sad" />
-                <Button BackgroundColor="red" Text="sad" />
-                <Button BackgroundColor="red" Text="sad" />
-                <Button BackgroundColor="red" Text="sad" />
+                <Button
+                    Padding="0"
+                    BackgroundColor="Red"
+                    Command="{Binding fullList}"
+                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php"
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="Random" />
+                <Button
+                    Padding="0"
+                    BackgroundColor="Red"
+                    Command="{Binding notFullList}"
+                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Optional_Alcohol"
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="OPTIONAL Alcohol" />
+                <Button
+                    Padding="0"
+                    BackgroundColor="Red"
+                    Command="{Binding notFullList}"
+                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Cocktail"
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="COCKTAIL" />
+                <Button
+                    Padding="0"
+                    BackgroundColor="Red"
+                    Command="{Binding notFullList}"
+                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Ordinary_Drink"
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="ORDINARY" />
             </StackLayout>
 
         </ScrollView>
@@ -94,6 +135,17 @@
             AbsoluteLayout.LayoutBounds="0,0,1,1"
             AbsoluteLayout.LayoutFlags="All"
             IsVisible="false" />
+
+        <Label
+            x:Name="DisconnectedLabel"
+            AbsoluteLayout.LayoutBounds="0,550,1,50"
+            AbsoluteLayout.LayoutFlags="WidthProportional"
+            BackgroundColor="Red"
+            HorizontalTextAlignment="Center"
+            IsVisible="False"
+            Text="Disconnected"
+            VerticalTextAlignment="Center" />
+
     </AbsoluteLayout>
 
 </ContentPage>

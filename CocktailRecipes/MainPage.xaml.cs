@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace CocktailRecipes
 {
@@ -13,7 +14,41 @@ namespace CocktailRecipes
     {
         public MainPage()
         {
-            InitializeComponent();
+
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                InitializeComponent();
+
+            }
+            else
+            {
+                DisplayAlert("Alert", "No Internet Connection ", "", "Ok");
+
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+        }
+
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess == NetworkAccess.Internet)
+            {
+                DisconnectedLabel.IsVisible = false;
+            }
+            else
+            {
+                DisconnectedLabel.IsVisible = true;
+            }
         }
 
         internal async Task HidePopover()
@@ -39,7 +74,7 @@ namespace CocktailRecipes
             DrinkDetailCell.BindingContext = element.BindingContext;
             DrinkDetailCell.checkLabels();
             DrinkDetailCell.IsVisible = true;
-
+            // Check internet connection 
         }
 
     }
