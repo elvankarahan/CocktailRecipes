@@ -35,10 +35,11 @@ namespace CocktailRecipes
             Accelerometer.Start(SensorSpeed.Game);
         }
 
-        private void Accelerometer_ShakeDetected(object sender, EventArgs e)
+        private async void Accelerometer_ShakeDetected(object sender, EventArgs e)
         {
             string randomLink = "https://www.thecocktaildb.com/api/json/v2/9973533/random.php";
-            DrinkFullDetail fake = new DrinkFullDetail();
+            ShakePage fake = new ShakePage();
+            await Navigation.PushModalAsync(fake);
 
         }
 
