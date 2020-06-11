@@ -53,12 +53,7 @@
                     FontSize="10"
                     HorizontalOptions="Center"
                     Text="Popular" />
-                <Button
-                    BackgroundColor="Red"
-                    Command="{Binding notFullList}"
-                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Non_Alcoholic"
-                    FontSize="10"
-                    Text="Non-ALCHOLIC" />
+
                 <Button
                     Padding="0"
                     BackgroundColor="Red"
@@ -99,37 +94,46 @@
                     FontSize="10"
                     HorizontalOptions="Center"
                     Text="ORDINARY" />
+                <Button
+                    BackgroundColor="Red"
+                    Command="{Binding notFullList}"
+                    CommandParameter="https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Non_Alcoholic"
+                    FontSize="10"
+                    Text="Non-ALCHOLIC" />
             </StackLayout>
 
         </ScrollView>
 
-        <ScrollView
-            x:Name="ScrollContainer"
+        <RefreshView
+            x:Name="refreshView"
             AbsoluteLayout.LayoutBounds="15, 210,.93,.65"
             AbsoluteLayout.LayoutFlags="SizeProportional"
-            VerticalScrollBarVisibility="Never">
+            Command="{Binding refreshList}"
+            IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
 
-            <FlexLayout
-                x:Name="FlextLayoutList"
-                BindableLayout.ItemsSource="{Binding ItemList}"
-                Direction="Row"
-                HorizontalOptions="Center"
-                JustifyContent="Center"
-                Wrap="Wrap">
+            <ScrollView x:Name="ScrollContainer" VerticalScrollBarVisibility="Never">
 
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <controls:DrinkDisplay>
-                            <controls:DrinkDisplay.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                            </controls:DrinkDisplay.GestureRecognizers>
-                        </controls:DrinkDisplay>
-                    </DataTemplate>
+                <FlexLayout
+                    x:Name="FlextLayoutList"
+                    BindableLayout.ItemsSource="{Binding ItemList}"
+                    Direction="Row"
+                    HorizontalOptions="Center"
+                    JustifyContent="Center"
+                    Wrap="Wrap">
 
-                </BindableLayout.ItemTemplate>
-            </FlexLayout>
-        </ScrollView>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <controls:DrinkDisplay>
+                                <controls:DrinkDisplay.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                </controls:DrinkDisplay.GestureRecognizers>
+                            </controls:DrinkDisplay>
+                        </DataTemplate>
 
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </ScrollView>
+        </RefreshView>
         <controls:DrinkFullDetail
             x:Name="DrinkDetailCell"
             AbsoluteLayout.LayoutBounds="0,0,1,1"

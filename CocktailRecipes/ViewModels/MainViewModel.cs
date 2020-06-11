@@ -16,10 +16,11 @@ namespace CocktailRecipes.ViewModels
     {
         public string randomSelection = "https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php";
 
-        /// <summary>
-
-        /// </summary>
-
+        bool isRefreshing;
+        public ICommand fullList { get; }
+        public ICommand notFullList { get; }
+        public ICommand searchCommand { get; }
+        public ICommand refreshList { get; }
 
         private IList<Drink> ItemList_;
         public IList<Drink> ItemList
@@ -31,10 +32,15 @@ namespace CocktailRecipes.ViewModels
                 SetProperty(ref ItemList_, value);
             }
         }
-
-        public ICommand fullList { get; }
-        public ICommand notFullList { get; }
-        public ICommand searchCommand { get; }
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
 
 
         public MainViewModel()
@@ -47,9 +53,19 @@ namespace CocktailRecipes.ViewModels
 
             searchCommand = new Command<string>((x) => SearchBarCommand(x));
 
+            refreshList = new Command(() =>
+            {
+                Refresh();
+                IsRefreshing = false;
+            });
+
             GetDataAsync(randomSelection);
         }
+        private void Refresh()
+        {
+            GetDataAsync("https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php");
 
+        }
         private void SearchBarCommand(string searchDrink)
         {
             GetDataAsync("https://www.thecocktaildb.com/api/json/v2/9973533/search.php?s=" + searchDrink);
@@ -115,6 +131,7 @@ namespace CocktailRecipes.ViewModels
                     {
                         GetDataAsync(randomSelection);
                     }
+
                 }
             }
         }

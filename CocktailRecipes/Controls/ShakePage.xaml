@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <ContentPage.Content>
+
         <StackLayout>
             <ScrollView Margin="10,10">
                 <Grid RowSpacing="0">
@@ -416,5 +417,6 @@
                 IsVisible="False"
                 Text="{Binding idDrink}" />
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

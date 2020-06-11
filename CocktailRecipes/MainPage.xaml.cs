@@ -30,7 +30,7 @@ namespace CocktailRecipes
             base.OnAppearing();
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
             Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
-            Accelerometer.Start(SensorSpeed.Game);
+            Accelerometer.Start(SensorSpeed.UI);
         }
 
         private async void Accelerometer_ShakeDetected(object sender, EventArgs e)
@@ -59,12 +59,17 @@ namespace CocktailRecipes
             }
         }
 
+#pragma warning disable CS1998 // This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.
         internal async Task HidePopover()
+#pragma warning restore CS1998 // This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.
         {
             DrinkDetailCell.IsVisible = false;
         }
 
+
+#pragma warning disable CS1998 // This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+#pragma warning restore CS1998 // This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.
         {
             DrinkDisplay element = sender as DrinkDisplay;
 
