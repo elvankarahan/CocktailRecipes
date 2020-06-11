@@ -20,7 +20,6 @@ namespace CocktailRecipes.Controls
         {
             InitializeComponent();
             GetDataAsync();
-
         }
 
         private async void GetDataAsync()

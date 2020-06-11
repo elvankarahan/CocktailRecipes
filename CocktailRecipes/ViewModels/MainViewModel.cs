@@ -46,8 +46,7 @@ namespace CocktailRecipes.ViewModels
             notFullList = new Command<string>((x) => GetDataForChangeList(x));
 
             searchCommand = new Command<string>((x) => SearchBarCommand(x));
-            //saasasas
-            //RandomItem();
+
             GetDataAsync(randomSelection);
         }
 
@@ -74,6 +73,7 @@ namespace CocktailRecipes.ViewModels
                     {
                         string tempUrl = "https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=";
                         ItemList.Clear();
+
                         foreach (var item in rootObject.drinks)
                         {
                             var tempresponse = await httpClient.GetAsync(tempUrl + item.idDrink);

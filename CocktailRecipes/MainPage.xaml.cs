@@ -18,12 +18,10 @@ namespace CocktailRecipes
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
                 InitializeComponent();
-
             }
             else
             {
                 DisplayAlert("Alert", "No Internet Connection ", "", "Ok");
-
             }
         }
 
@@ -37,10 +35,8 @@ namespace CocktailRecipes
 
         private async void Accelerometer_ShakeDetected(object sender, EventArgs e)
         {
-            string randomLink = "https://www.thecocktaildb.com/api/json/v2/9973533/random.php";
-            ShakePage fake = new ShakePage();
-            await Navigation.PushModalAsync(fake);
-
+            ShakePage shakePage = new ShakePage();
+            await Navigation.PushModalAsync(shakePage);
         }
 
         protected override void OnDisappearing()
@@ -49,7 +45,6 @@ namespace CocktailRecipes
             Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
             Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
             Accelerometer.Stop();
-
         }
 
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
@@ -69,9 +64,8 @@ namespace CocktailRecipes
             DrinkDetailCell.IsVisible = false;
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-
             DrinkDisplay element = sender as DrinkDisplay;
 
             DrinkDetailCell.BindingContext = element.BindingContext;

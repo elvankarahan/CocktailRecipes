@@ -411,6 +411,10 @@
                         Text="{Binding strMeasure10}" />
                 </Grid>
             </ScrollView>
+            <Label
+                x:Name="DrinkID"
+                IsVisible="False"
+                Text="{Binding idDrink}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
