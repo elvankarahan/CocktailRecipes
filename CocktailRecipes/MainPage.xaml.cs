@@ -31,12 +31,24 @@ namespace CocktailRecipes
         {
             base.OnAppearing();
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+            Accelerometer.Start(SensorSpeed.Game);
+        }
+
+        private void Accelerometer_ShakeDetected(object sender, EventArgs e)
+        {
+            string randomLink = "https://www.thecocktaildb.com/api/json/v2/9973533/random.php";
+            DrinkFullDetail fake = new DrinkFullDetail();
+
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+            Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
+            Accelerometer.Stop();
+
         }
 
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
@@ -53,17 +65,7 @@ namespace CocktailRecipes
 
         internal async Task HidePopover()
         {
-            // fade out the elements
-            //await Task.WhenAll(
-            //    new Task[]
-            //    {
-            //        DrinkDetailCell.FadeTo(0),
-
-            //    });
-
-            // hide our fake product cell
             DrinkDetailCell.IsVisible = false;
-
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -74,8 +76,6 @@ namespace CocktailRecipes
             DrinkDetailCell.BindingContext = element.BindingContext;
             DrinkDetailCell.checkLabels();
             DrinkDetailCell.IsVisible = true;
-            // Check internet connection 
         }
-
     }
 }

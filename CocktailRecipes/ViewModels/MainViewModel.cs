@@ -14,13 +14,12 @@ namespace CocktailRecipes.ViewModels
 
     public class MainViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public string popular = "https://www.thecocktaildb.com/api/json/v2/9973533/popular.php";
         public string randomSelection = "https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php";
-        public string nonAlcoholicOnly = "http://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Non_Alcoholic";
-        public string OptionalAlcohol = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Optional_Alcohol";
-        public string ordinaryDrink = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Ordinary_Drink";
-        public string cocktailOnly = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?c=Cocktail";
-        public string searchUrl = "https://www.thecocktaildb.com/api/json/v2/9973533/search.php?s=";
+
+        /// <summary>
+
+        /// </summary>
+
 
         private IList<Drink> ItemList_;
         public IList<Drink> ItemList
@@ -47,7 +46,8 @@ namespace CocktailRecipes.ViewModels
             notFullList = new Command<string>((x) => GetDataForChangeList(x));
 
             searchCommand = new Command<string>((x) => SearchBarCommand(x));
-
+            //saasasas
+            //RandomItem();
             GetDataAsync(randomSelection);
         }
 
@@ -70,15 +70,22 @@ namespace CocktailRecipes.ViewModels
                     var content = await response.Content.ReadAsStringAsync();
                     ItemViewModel rootObject = JsonConvert.DeserializeObject<ItemViewModel>(content);
 
-                    string tempUrl = "https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=";
-                    ItemList.Clear();
-                    foreach (var item in rootObject.drinks)
+                    try
                     {
-                        var tempresponse = await httpClient.GetAsync(tempUrl + item.idDrink);
-                        var tempcontent = await tempresponse.Content.ReadAsStringAsync();
-                        ItemViewModel temprootObject = JsonConvert.DeserializeObject<ItemViewModel>(tempcontent);
+                        string tempUrl = "https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=";
+                        ItemList.Clear();
+                        foreach (var item in rootObject.drinks)
+                        {
+                            var tempresponse = await httpClient.GetAsync(tempUrl + item.idDrink);
+                            var tempcontent = await tempresponse.Content.ReadAsStringAsync();
+                            ItemViewModel temprootObject = JsonConvert.DeserializeObject<ItemViewModel>(tempcontent);
 
-                        ItemList.Add(temprootObject.drinks[0]);
+                            ItemList.Add(temprootObject.drinks[0]);
+                        }
+                    }
+                    catch (System.NullReferenceException ex)
+                    {
+                        GetDataAsync(randomSelection);
                     }
                 }
             }
@@ -111,5 +118,6 @@ namespace CocktailRecipes.ViewModels
                 }
             }
         }
+
     }
 }

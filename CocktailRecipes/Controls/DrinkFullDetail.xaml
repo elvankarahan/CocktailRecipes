@@ -51,6 +51,7 @@
                         IsClippedToBounds="True"
                         VerticalOptions="Center">
                         <Image
+                            x:Name="strDrinkThumbImage"
                             HorizontalOptions="Center"
                             Source="{Binding strDrinkThumb}"
                             VerticalOptions="Center" />

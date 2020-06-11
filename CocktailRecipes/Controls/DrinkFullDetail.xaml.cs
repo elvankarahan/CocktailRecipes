@@ -34,7 +34,6 @@ namespace CocktailRecipes.Controls
             await Task.Delay(150);
             await buttonSelected.FadeTo(1, 250);
         }
-
         public void checkLabels()
         {
             List<Frame> allFrames = new List<Frame>();
@@ -125,5 +124,7 @@ namespace CocktailRecipes.Controls
 
             }
         }
+
+
     }
 }
